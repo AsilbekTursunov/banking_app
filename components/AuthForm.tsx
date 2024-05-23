@@ -22,7 +22,8 @@ import { authFormSchema } from '@/lib/utils'
 import { Loader2, Router } from 'lucide-react'
 import { useRouter } from 'next/navigation'
 import { signIn, signUp } from '@/lib/actions/user.action'
-const AuthForm = ({ type }: { type: string }) => {
+import PlaidLink from './PlaidLink'
+const AuthForm = ({ type }: { type: string  }) => {
   const router = useRouter()
   const [user, setUser] = useState(null)
   const [isLoading, setisLoading] = useState(false)
@@ -92,9 +93,11 @@ const AuthForm = ({ type }: { type: string }) => {
           </h1>
         </div>
       </header>
-      {user ? (
-        <div className='flex flex-col gap-4'>{/* PlaidLink */}</div>
-      ) : (
+      {/* {user ? ( */}
+        <div className='flex flex-col gap-4'>
+          <PlaidLink user={user} variant='primary' />
+        </div>
+      {/* ) : ( */}
         <>
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-4'>
@@ -207,7 +210,7 @@ const AuthForm = ({ type }: { type: string }) => {
             </form>
           </Form>
         </>
-      )}
+      {/* )} */}
     </section>
   )
 }
